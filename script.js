@@ -5,11 +5,25 @@ let currentUser = null;
 
 // ===== Función para cambiar de pantalla =====
 function goTo(screenId) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(screenId).classList.add('active');
+  // pantallas que requieren autenticación
+  const protectedScreens = ['home', 'converter', 'transfer'];
 
-  document.getElementById('menu').style.display =
-    (screenId === 'login' || screenId === 'register') ? 'none' : 'flex';
+  if (protectedScreens.includes(screenId) && !currentUser) {
+    alert('Debes iniciar sesión para acceder a esa sección.');
+    screenId = 'login';
+  }
+
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(screenId);
+  if (el) el.classList.add('active');
+
+  // Mostrar/ocultar menú inferior y navegación superior según sesión
+  const menu = document.getElementById('menu');
+  const topNav = document.getElementById('topNav');
+  if (menu) menu.style.display = (currentUser && screenId !== 'login' && screenId !== 'register') ? 'flex' : 'none';
+  if (topNav) topNav.style.display = currentUser ? 'flex' : 'none';
+  // actualizar elementos específicos de la UI según autenticación
+  updateUIForAuth();
 }
 
 // ===== Registro de usuario =====
@@ -45,7 +59,47 @@ function login() {
   currentUser = user;
   document.getElementById('userName').textContent = `${user.nombre} ${user.apellido}`;
   document.getElementById('userId').textContent = `C.C ${user.cedula}`;
+  // mostrar navegación y menú
+  const topNav = document.getElementById('topNav');
+  if (topNav) topNav.style.display = 'flex';
+  updateUIForAuth();
   goTo('home');
+}
+
+// ===== Cerrar sesión =====
+function logout(){
+  currentUser = null;
+  // limpiar info visible
+  const userName = document.getElementById('userName');
+  const userId = document.getElementById('userId');
+  if(userName) userName.textContent = 'Usuario';
+  if(userId) userId.textContent = 'C.C XXXXXXXX';
+
+  // ocultar nav/menu
+  const topNav = document.getElementById('topNav');
+  const menu = document.getElementById('menu');
+  if (topNav) topNav.style.display = 'none';
+  if (menu) menu.style.display = 'none';
+
+  updateUIForAuth();
+  goTo('login');
+}
+
+// ===== Actualizar UI según estado de autenticación =====
+function updateUIForAuth() {
+  const comenzar = document.getElementById('btnComenzar');
+  const crear = document.getElementById('btnCrearCuenta');
+  const topNav = document.getElementById('topNav');
+
+  if (currentUser) {
+    if (comenzar) comenzar.style.display = 'none';
+    if (crear) crear.style.display = 'none';
+    if (topNav) topNav.style.display = 'flex';
+  } else {
+    if (comenzar) comenzar.style.display = '';
+    if (crear) crear.style.display = '';
+    if (topNav) topNav.style.display = 'none';
+  }
 }
 
 // ===== Tasas fijas =====

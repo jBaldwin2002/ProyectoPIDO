@@ -3,106 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PIDO - Simulación de cambio y transferencias. Interfaz moderna y sencilla.">
   <title>PIDO - Simulación</title>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="Imagenes/favicon.png">
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="login" class="screen active">
-  <img src="Imagenes/LOGO-PIDO.png" alt="Logo PIDO" class="logo" />
-  <p>"Con PIDO todo es sencillo"</p>
-  <div class="card">
-    <input type="text" id="loginCel" placeholder="Número de celular"><br>
-    <input type="password" id="loginPass" placeholder="Contraseña"><br>
-    <button onclick="login()">Ingresar</button>
-    <p>¿No tienes cuenta?</p>
-    <button onclick="goTo('register')">Registrarse</button>
-  </div>
-</div>
-
-<!-- REGISTRO -->
-<div id="register" class="screen">
-  <h1>Registro</h1>
-  <div class="card">
-    <input type="text" id="nombre" placeholder="Nombre">
-    <input type="text" id="apellido" placeholder="Apellidos">
-    <input type="text" id="celular" placeholder="Número de celular">
-    <input type="text" id="cedula" placeholder="Número de cédula">
-    <input type="password" id="password" placeholder="Contraseña">
-    <button onclick="registerUser()">Registrar</button>
-    <p>¿Ya tienes cuenta?</p>
-    <button onclick="goTo('login')">Volver al Login</button>
-  </div>
-</div>
-
-<!-- INICIO -->
-<div id="home" class="screen">
-  <div class="card">
-    <h3>DISPONIBLE</h3>
-    <p><span class="flag">🇨🇴p</span>$******* </p>
-    <h4>ÚLTIMA MONEDA USADA</h4>
-    <p><span class="flag">🇺🇸</span>$****** </p>
-    <h4>MONEDA CON MAYOR VALOR</h4>
-    <p><span class="flag">🇪🇺</span>$******* </p>
-
-    <div style="margin-top: 20px;">
-      <button onclick="goTo('converter')">Cambio</button>
-      <button onclick="goTo('transfer')">Transferencia</button>
+  <header class="site-header">
+    <div class="container header-inner">
+      <img src="Imagenes/LOGO-PIDO.png" alt="Logo PIDO" class="logo" />
+      <nav id="topNav" class="top-nav" aria-label="Navegación principal" style="display:none">
+        <button onclick="goTo('home')">Inicio</button>
+        <button onclick="goTo('converter')">Cambio</button>
+        <button onclick="goTo('transfer')">Transferencia</button>
+        <button id="logoutBtn" onclick="logout()" style="margin-left:8px;background:none;border:1px solid rgba(0,0,0,0.06);padding:6px 10px;border-radius:8px;">Cerrar sesión</button>
+      </nav>
     </div>
+  </header>
 
-    <div class="balance">
-      <p><b id="userName">Usuario</b><br><span id="userId">C.C XXXXXXXX</span></p>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>PIDO</h1>
+        <p class="tagline">Con PIDO todo es sencillo — cambia y envía dinero fácilmente.</p>
+        <div class="hero-cta">
+          <button id="btnComenzar" onclick="goTo('login')" class="primary">Comenzar</button>
+          <button id="btnCrearCuenta" onclick="goTo('register')" class="ghost">Crear cuenta</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGIN -->
+    <section id="login" class="screen active" aria-labelledby="loginTitle">
+      <div class="container">
+        <div class="card">
+          <h2 id="loginTitle">Iniciar sesión</h2>
+          <p class="muted">Accede a tu cuenta</p>
+          <label for="loginCel" class="sr-only">Número de celular</label>
+          <input type="text" id="loginCel" placeholder="Número de celular" aria-label="Número de celular">
+          <label for="loginPass" class="sr-only">Contraseña</label>
+          <input type="password" id="loginPass" placeholder="Contraseña" aria-label="Contraseña">
+          <div class="actions">
+            <button onclick="login()" class="primary">Ingresar</button>
+            <button onclick="goTo('register')" class="link">Registrarse</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGISTRO -->
+    <section id="register" class="screen" aria-labelledby="registerTitle">
+      <div class="container">
+        <div class="card">
+          <h2 id="registerTitle">Registro</h2>
+          <label for="nombre" class="sr-only">Nombre</label>
+          <input type="text" id="nombre" placeholder="Nombre">
+          <label for="apellido" class="sr-only">Apellidos</label>
+          <input type="text" id="apellido" placeholder="Apellidos">
+          <label for="celular" class="sr-only">Número de celular</label>
+          <input type="text" id="celular" placeholder="Número de celular">
+          <label for="cedula" class="sr-only">Número de cédula</label>
+          <input type="text" id="cedula" placeholder="Número de cédula">
+          <label for="password" class="sr-only">Contraseña</label>
+          <input type="password" id="password" placeholder="Contraseña">
+          <div class="actions">
+            <button onclick="registerUser()" class="primary">Registrar</button>
+            <button onclick="goTo('login')" class="link">Volver al Login</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INICIO -->
+    <section id="home" class="screen" aria-labelledby="homeTitle">
+      <div class="container">
+        <div class="card">
+          <h2 id="homeTitle">Resumen</h2>
+          <div class="grid">
+            <div>
+              <h4>Disponible</h4>
+              <p><span class="flag">🇨🇴</span>$*******</p>
+            </div>
+            <div>
+              <h4>Última moneda usada</h4>
+              <p><span class="flag">🇺🇸</span>$******</p>
+            </div>
+            <div>
+              <h4>Mayor valor</h4>
+              <p><span class="flag">🇪🇺</span>$*******</p>
+            </div>
+          </div>
+          <div class="actions" style="margin-top:16px;">
+            <button onclick="goTo('converter')" class="primary">Cambio</button>
+            <button onclick="goTo('transfer')" class="primary outline">Transferencia</button>
+          </div>
+          <div class="balance">
+            <p><b id="userName">Usuario</b><br><span id="userId">C.C XXXXXXXX</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONVERSOR -->
+    <section id="converter" class="screen" aria-labelledby="converterTitle">
+      <div class="container">
+        <div class="card">
+          <h2 id="converterTitle">Cambio de Divisas</h2>
+          <div class="field-row">
+            <select id="fromCurrency">
+              <option value="COP">🇨🇴 Peso Colombiano</option>
+              <option value="USD">🇺🇸 Dólar Estadounidense</option>
+              <option value="EUR">🇪🇺 Euro</option>
+            </select>
+            <button class="swap">⇅</button>
+            <select id="toCurrency">
+              <option value="USD">🇺🇸 Dólar Estadounidense</option>
+              <option value="EUR">🇪🇺 Euro</option>
+              <option value="COP">🇨🇴 Peso Colombiano</option>
+            </select>
+          </div>
+          <input type="number" id="amount" placeholder="Cantidad">
+          <div class="actions">
+            <button onclick="convertCurrency()" class="primary">Convertir</button>
+          </div>
+          <p id="result" class="result"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSFERENCIA -->
+    <section id="transfer" class="screen" aria-labelledby="transferTitle">
+      <div class="container">
+        <div class="card">
+          <h2 id="transferTitle">Transferencia</h2>
+          <p class="muted">Envía dinero en la moneda que elijas.</p>
+          <input type="text" id="destino" placeholder="Número de cuenta o celular destino">
+          <select id="moneda">
+            <option value="COP">🇨🇴 Peso Colombiano</option>
+            <option value="USD">🇺🇸 Dólar Estadounidense</option>
+            <option value="EUR">🇪🇺 Euro</option>
+          </select>
+          <input type="number" id="monto" placeholder="Cantidad a enviar">
+          <div class="actions">
+            <button onclick="simularTransferencia()" class="primary">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year">2025</span> PIDO — Simulación</p>
+      <small class="muted">Proyecto de práctica</small>
     </div>
-  </div>
-</div>
+  </footer>
 
-<!-- CONVERSOR -->
-<div id="converter" class="screen">
-  <div class="card">
-    <h3>Cambio de Divisas</h3>
-    <select id="fromCurrency">
-      <option value="COP">🇨🇴 Peso Colombiano</option>
-      <option value="USD">🇺🇸 Dólar Estadounidense</option>
-      <option value="EUR">🇪🇺 Euro</option>
-    </select>
-    <p>⇅</p>
-    <select id="toCurrency">
-      <option value="USD">🇺🇸 Dólar Estadounidense</option>
-      <option value="EUR">🇪🇺 Euro</option>
-      <option value="COP">🇨🇴 Peso Colombiano</option>
-    </select>
-    <input type="number" id="amount" placeholder="Cantidad">
-    <button onclick="convertCurrency()">Convertir</button>
-    <p id="result"></p>
-  </div>
-</div>
 
-<!-- TRANSFERENCIA -->
-<div id="transfer" class="screen">
-  <div class="card">
-    <h3>Transferencia</h3>
-    <p>Envía dinero en la moneda que elijas.</p>
-    <input type="text" id="destino" placeholder="Número de cuenta o celular destino">
-    <select id="moneda">
-      <option value="COP">🇨🇴 Peso Colombiano</option>
-      <option value="USD">🇺🇸 Dólar Estadounidense</option>
-      <option value="EUR">🇪🇺 Euro</option>
-    </select>
-    <input type="number" id="monto" placeholder="Cantidad a enviar">
-    <button onclick="simularTransferencia()">Enviar</button>
-  </div>
-</div>
 
-<!-- MENÚ -->
-<div class="menu" id="menu">
-  <button onclick="goTo('converter')">Cambio</button>
-  <button onclick="goTo('transfer')">Transferencia</button>
-  <button onclick="goTo('home')">Inicio</button>
-</div>
-
-<!-- SCRIPT -->
-<script src="script.js"></script>
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
 
 </body>
 </html>

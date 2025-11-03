@@ -1,83 +1,84 @@
+:root{
+  --bg-1: linear-gradient(135deg,#f7f0ff,#f6f9ff);
+  --card-bg: #ffffff;
+  --muted: #6b6b7a;
+  --accent: #7b5cff;
+  --accent-2: #ff8a42;
+  --radius: 14px;
+  --container-max: 980px;
+}
+
+*{box-sizing:border-box}
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #f2e4f7;
   margin: 0;
   padding: 0;
+  background: var(--bg-1);
+  color: #222;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-.screen {
-  display: none;
-  height: 100vh;
-  text-align: center;
-}
+.container{max-width:var(--container-max);margin:0 auto;padding:0 16px}
 
-.active {
-  display: block;
-}
+.site-header{padding:12px 0}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.top-nav button{background:none;border:none;color:var(--muted);padding:8px 12px;border-radius:8px;cursor:pointer}
+.top-nav button:hover{color:var(--accent)}
 
-.card {
-  background: white;
-  border-radius: 25px;
-  padding: 20px;
-  margin: 60px auto;
-  width: 80%;
-  max-width: 360px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+.hero{padding:48px 0;text-align:center}
+.hero h1{font-size:40px;margin:0 0 8px;color:var(--accent)}
+.tagline{color:var(--muted);margin:0 0 18px}
+.hero-cta button{margin:0 8px}
 
-h1 {
-  color: #333;
-}
+.screen{display:none;padding:28px 0}
+.screen.active{display:block}
 
-input,
-select {
-  width: 80%;
-  padding: 10px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 10px;
-  background-color: #eee;
+.card{
+  background:var(--card-bg);
+  border-radius:calc(var(--radius) + 6px);
+  padding:22px;
+  margin:20px auto;
+  width:90%;
+  max-width:420px;
+  box-shadow:0 6px 20px rgba(33,18,59,0.08);
+  transition:transform .18s ease,box-shadow .18s ease;
 }
+.card:focus-within{transform:translateY(-3px);box-shadow:0 10px 30px rgba(33,18,59,0.12)}
 
-button {
-  background-color: #ffa861;
-  border: none;
-  color: white;
-  padding: 10px 30px;
-  border-radius: 10px;
-  cursor: pointer;
-}
+h1,h2,h3,h4{margin:8px 0}
+.muted{color:var(--muted);font-size:0.95rem}
 
-button:hover {
-  background-color: #ff9240;
-}
+input,select{width:100%;padding:12px 14px;margin:10px 0;border:1px solid #eee;border-radius:10px;background:#fbfbfd}
+input:focus,select:focus{outline:none;border-color:rgba(123,92,255,0.5);box-shadow:0 6px 18px rgba(123,92,255,0.06)}
 
-.menu {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #d3bafc;
-  display: none;
-  /* 👈 oculto por defecto */
-  justify-content: space-around;
-  padding: 10px 0;
-  border-radius: 20px 20px 0 0;
-}
+.actions{display:flex;gap:10px;justify-content:center;align-items:center;margin-top:10px}
 
-.menu button {
-  background: none;
-  color: #333;
-  font-weight: bold;
-}
+button{font-weight:600;padding:10px 20px;border-radius:10px;border:none;cursor:pointer;transition:all .14s ease}
+.primary{background:var(--accent);color:#fff;box-shadow:0 6px 18px rgba(123,92,255,0.12)}
+.primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(123,92,255,0.16)}
+.primary.outline{background:transparent;color:var(--accent);border:1px solid rgba(123,92,255,0.12)}
+.ghost{background:transparent;color:var(--muted);border:1px solid rgba(0,0,0,0.05)}
+.link{background:none;color:var(--accent);padding:6px 12px}
+.swap{background:#f3f4f8;border-radius:8px;padding:8px 12px}
 
-.flag {
-  font-size: 1.3em;
-  margin-right: 5px;
-}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left}
+.grid h4{margin:0;font-size:0.95rem;color:var(--muted)}
 
-.logo {
-  width: 150px;
-  margin: 10px auto;
-  display: block;
+.balance{margin-top:12px;text-align:center}
+.result{margin-top:12px;font-weight:600}
+
+.menu{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;background:linear-gradient(90deg,#fff,#fff);padding:8px;border-radius:999px;box-shadow:0 8px 30px rgba(0,0,0,0.08);}
+.menu button{background:none;border:none;padding:10px 14px;border-radius:999px;color:var(--muted);cursor:pointer}
+.menu button:hover{color:var(--accent)}
+
+.flag{font-size:1.1em;margin-right:6px}
+.logo{width:110px;height:auto}
+
+.sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+@media(max-width:720px){
+  .grid{grid-template-columns:1fr}
+  .hero h1{font-size:32px}
+  .card{margin:12px auto}
 }
