@@ -80,34 +80,46 @@
     </section>
 
     <!-- INICIO -->
-    <section id="home" class="screen" aria-labelledby="homeTitle">
-      <div class="container">
-        <div class="card">
-          <h2 id="homeTitle">Resumen</h2>
-          <div class="grid">
-            <div>
-              <h4>Disponible</h4>
-              <p><span class="flag">🇨🇴</span>$*******</p>
-            </div>
-            <div>
-              <h4>Última moneda usada</h4>
-              <p><span class="flag">🇺🇸</span>$******</p>
-            </div>
-            <div>
-              <h4>Mayor valor</h4>
-              <p><span class="flag">🇪🇺</span>$*******</p>
-            </div>
-          </div>
-          <div class="actions" style="margin-top:16px;">
-            <button onclick="goTo('converter')" class="primary">Cambio</button>
-            <button onclick="goTo('transfer')" class="primary outline">Transferencia</button>
-          </div>
-          <div class="balance">
-            <p><b id="userName">Usuario</b><br><span id="userId">C.C XXXXXXXX</span></p>
-          </div>
+<section id="home" class="screen" aria-labelledby="homeTitle">
+  <div class="container">
+    <div class="card">
+      <h2 id="homeTitle">Resumen</h2>
+      
+      <!-- Botón para ver/ocultar saldos -->
+      <div style="text-align: center; margin-bottom: 16px;">
+        <button id="toggleSaldosBtn" onclick="toggleSaldos()" class="primary" style="font-size: 14px; padding: 8px 16px;">
+        Ver saldos
+        </button>
+        </div>
+      
+      <div class="grid">
+        <div>
+          <h4>Disponible COP</h4>
+          <p><span class="flag"></span> $*******</p>
+        </div>
+        <div>
+          <h4>Disponible USD</h4>
+          <p><span class="flag"></span> $******</p>
+        </div>
+        <div>
+          <h4>Disponible EUR</h4>
+          <p><span class="flag"></span> €*******</p>
         </div>
       </div>
-    </section>
+      
+      <div class="actions" style="margin-top: 16px;">
+        <button onclick="goTo('converter')" class="primary">Cambio</button>
+        <button onclick="goTo('transfer')" class="primary outline">Transferencia</button>
+      </div>
+      
+
+      
+      <div class="balance">
+        <p><b id="userName">Usuario</b><br><span id="userId">C.C XXXXXXXX</span></p>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- CONVERSOR -->
     <section id="converter" class="screen" aria-labelledby="converterTitle">
@@ -163,8 +175,6 @@
       <small class="muted">Proyecto de práctica</small>
     </div>
   </footer>
-
-
 
   <!-- SCRIPT -->
   <script src="script.js"></script>

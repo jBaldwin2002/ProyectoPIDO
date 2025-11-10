@@ -178,3 +178,46 @@ window.addEventListener('keydown', e => {
     alert("Datos guardados en archivo TXT");
   }
 });
+
+
+// ===== Ver/Ocultar Saldos =====
+let saldosVisibles = false;
+
+function mostrarSaldos() {
+  if (!currentUser) return;
+  
+  const copElement = document.querySelector('#home .grid > div:nth-child(1) p');
+  const usdElement = document.querySelector('#home .grid > div:nth-child(2) p');
+  const eurElement = document.querySelector('#home .grid > div:nth-child(3) p');
+
+  if (!copElement || !usdElement || !eurElement) return;
+
+  if (saldosVisibles) {
+    copElement.innerHTML = `<span class="flag"></span> $${formatNumber(currentUser.saldo.COP)} COP`;
+    usdElement.innerHTML = `<span class="flag"></span> $${formatNumber(currentUser.saldo.USD)} USD`;
+    eurElement.innerHTML = `<span class="flag"></span> €${formatNumber(currentUser.saldo.EUR)} EUR`;
+  } else {
+    copElement.innerHTML = `<span class="flag"></span> $*******`;
+    usdElement.innerHTML = `<span class="flag"></span> $******`;
+    eurElement.innerHTML = `<span class="flag"></span> €*******`;
+  }
+}
+
+function toggleSaldos() {
+  if (!currentUser) {
+    alert('Debes iniciar sesión primero');
+    return;
+  }
+  
+  saldosVisibles = !saldosVisibles;
+  mostrarSaldos();
+  
+  const btn = document.getElementById('toggleSaldosBtn');
+  if (btn) {
+    btn.textContent = saldosVisibles ? 'Ocultar saldos' : 'Ver saldos';
+  }
+}
+
+function formatNumber(num) {
+  return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
