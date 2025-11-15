@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="PIDO - Simulación de cambio y transferencias. Interfaz moderna y sencilla.">
   <title>PIDO - Simulación</title>
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="PIDO - Simulación de cambio y transferencias">
+  <meta property="og:description" content="Con PIDO todo es sencillo — cambia y envía dinero fácilmente.">
+  <meta property="og:image" content="Imagenes/LOGO-PIDO.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PIDO - Simulación">
+  <meta name="twitter:description" content="Interfaz para simular cambios y transferencias">
+  <meta name="theme-color" content="#7b5cff">
+  <link rel="manifest" href="manifest.json">
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,16 +23,19 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="Imagenes/favicon.png">
 </head>
+
 <body>
 
   <header class="site-header">
     <div class="container header-inner">
       <img src="Imagenes/LOGO-PIDO.png" alt="Logo PIDO" class="logo" />
       <nav id="topNav" class="top-nav" aria-label="Navegación principal" style="display:none">
-        <button onclick="goTo('home')">Inicio</button>
-        <button onclick="goTo('converter')">Cambio</button>
-        <button onclick="goTo('transfer')">Transferencia</button>
-        <button id="logoutBtn" onclick="logout()" style="margin-left:8px;background:none;border:1px solid rgba(0,0,0,0.06);padding:6px 10px;border-radius:8px;">Cerrar sesión</button>
+        <button class="nav-btn" data-target="home">Inicio</button>
+        <button class="nav-btn" data-target="converter">Cambio</button>
+        <button class="nav-btn" data-target="transfer">Transferencia</button>
+        <button id="logoutBtn" data-action="logout"
+          style="margin-left:8px;background:none;border:1px solid rgba(0,0,0,0.06);padding:6px 10px;border-radius:8px;">Cerrar
+          sesión</button>
       </nav>
     </div>
   </header>
@@ -32,8 +46,8 @@
         <h1>PIDO</h1>
         <p class="tagline">Con PIDO todo es sencillo — cambia y envía dinero fácilmente.</p>
         <div class="hero-cta">
-          <button id="btnComenzar" onclick="goTo('login')" class="primary">Comenzar</button>
-          <button id="btnCrearCuenta" onclick="goTo('register')" class="ghost">Crear cuenta</button>
+          <button id="btnComenzar" class="primary">Comenzar</button>
+          <button id="btnCrearCuenta" class="ghost">Crear cuenta</button>
         </div>
       </div>
     </section>
@@ -44,14 +58,20 @@
         <div class="card">
           <h2 id="loginTitle">Iniciar sesión</h2>
           <p class="muted">Accede a tu cuenta</p>
-          <label for="loginCel" class="sr-only">Número de celular</label>
-          <input type="text" id="loginCel" placeholder="Número de celular" aria-label="Número de celular">
-          <label for="loginPass" class="sr-only">Contraseña</label>
-          <input type="password" id="loginPass" placeholder="Contraseña" aria-label="Contraseña">
-          <div class="actions">
-            <button onclick="login()" class="primary">Ingresar</button>
-            <button onclick="goTo('register')" class="link">Registrarse</button>
-          </div>
+          <form id="loginForm" novalidate>
+            <div id="loginFormError" class="form-error" aria-live="assertive" hidden></div>
+            <div id="loginFormSuccess" class="form-success" aria-live="polite" hidden></div>
+            <label for="loginCel" class="sr-only">Número de celular</label>
+            <input type="tel" id="loginCel" name="celular" placeholder="Número de celular"
+              aria-label="Número de celular" required pattern="\d{7,15}">
+            <label for="loginPass" class="sr-only">Contraseña</label>
+            <input type="password" id="loginPass" name="password" placeholder="Contraseña" aria-label="Contraseña"
+              required minlength="4">
+            <div class="actions">
+              <button id="loginBtn" type="submit" class="primary">Ingresar</button>
+              <button id="toRegisterBtn" type="button" class="link">Registrarse</button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
@@ -61,88 +81,96 @@
       <div class="container">
         <div class="card">
           <h2 id="registerTitle">Registro</h2>
-          <label for="nombre" class="sr-only">Nombre</label>
-          <input type="text" id="nombre" placeholder="Nombre">
-          <label for="apellido" class="sr-only">Apellidos</label>
-          <input type="text" id="apellido" placeholder="Apellidos">
-          <label for="celular" class="sr-only">Número de celular</label>
-          <input type="text" id="celular" placeholder="Número de celular">
-          <label for="cedula" class="sr-only">Número de cédula</label>
-          <input type="text" id="cedula" placeholder="Número de cédula">
-          <label for="password" class="sr-only">Contraseña</label>
-          <input type="password" id="password" placeholder="Contraseña">
-          <div class="actions">
-            <button onclick="registerUser()" class="primary">Registrar</button>
-            <button onclick="goTo('login')" class="link">Volver al Login</button>
-          </div>
+          <form id="registerForm" novalidate>
+            <div id="registerFormError" class="form-error" aria-live="assertive" hidden></div>
+            <div id="registerFormSuccess" class="form-success" aria-live="polite" hidden></div>
+            <label for="nombre" class="sr-only">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+            <label for="apellido" class="sr-only">Apellidos</label>
+            <input type="text" id="apellido" name="apellido" placeholder="Apellidos" required>
+            <label for="celular" class="sr-only">Número de celular</label>
+            <input type="tel" id="celular" name="celular" placeholder="Número de celular" required pattern="\d{7,15}">
+            <label for="cedula" class="sr-only">Número de cédula</label>
+            <input type="text" id="cedula" name="cedula" placeholder="Número de cédula" required pattern="\d{6,12}">
+            <label for="password" class="sr-only">Contraseña</label>
+            <input type="password" id="password" name="password" placeholder="Contraseña" required minlength="4">
+            <div class="actions">
+              <button id="registerBtn" type="submit" class="primary">Registrar</button>
+              <button id="toLoginBtn" type="button" class="link">Volver al Login</button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
 
     <!-- INICIO -->
-<section id="home" class="screen" aria-labelledby="homeTitle">
-  <div class="container">
-    <div class="card">
-      <h2 id="homeTitle">Resumen</h2>
-      
-      <!-- Botón para ver/ocultar saldos -->
-      <div style="text-align: center; margin-bottom: 16px;">
-        <button id="toggleSaldosBtn" onclick="toggleSaldos()" class="primary" style="font-size: 14px; padding: 8px 16px;">
-        Ver saldos
-        </button>
-        </div>
-      
-      <div class="grid">
-        <div>
-          <h4>Disponible COP</h4>
-          <p><span class="flag"></span> $*******</p>
-        </div>
-        <div>
-          <h4>Disponible USD</h4>
-          <p><span class="flag"></span> $******</p>
-        </div>
-        <div>
-          <h4>Disponible EUR</h4>
-          <p><span class="flag"></span> €*******</p>
-        </div>
-      </div>
-      
-      <div class="actions" style="margin-top: 16px;">
-        <button onclick="goTo('converter')" class="primary">Cambio</button>
-        <button onclick="goTo('transfer')" class="primary outline">Transferencia</button>
-      </div>
-      
+    <section id="home" class="screen" aria-labelledby="homeTitle">
+      <div class="container">
+        <div class="card">
+          <h2 id="homeTitle">Resumen</h2>
 
-      
-      <div class="balance">
-        <p><b id="userName">Usuario</b><br><span id="userId">C.C XXXXXXXX</span></p>
+          <!-- Botón para ver/ocultar saldos -->
+          <div style="text-align: center; margin-bottom: 16px;">
+            <button id="toggleSaldosBtn" class="primary" style="font-size: 14px; padding: 8px 16px;">
+              Ver saldos
+            </button>
+          </div>
+
+          <div class="grid">
+            <div>
+              <h4>Disponible COP</h4>
+              <p><span class="flag"></span> $*******</p>
+            </div>
+            <div>
+              <h4>Disponible USD</h4>
+              <p><span class="flag"></span> $******</p>
+            </div>
+            <div>
+              <h4>Disponible EUR</h4>
+              <p><span class="flag"></span> €*******</p>
+            </div>
+          </div>
+
+          <div class="actions" style="margin-top: 16px;">
+            <button id="toConverterBtn" class="primary">Cambio</button>
+            <button id="toTransferBtn" class="primary outline">Transferencia</button>
+          </div>
+
+
+
+          <div class="balance">
+            <p><b id="userName">Usuario</b><br><span id="userId">C.C XXXXXXXX</span></p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- CONVERSOR -->
     <section id="converter" class="screen" aria-labelledby="converterTitle">
       <div class="container">
         <div class="card">
           <h2 id="converterTitle">Cambio de Divisas</h2>
-          <div class="field-row">
-            <select id="fromCurrency">
-              <option value="COP">🇨🇴 Peso Colombiano</option>
-              <option value="USD">🇺🇸 Dólar Estadounidense</option>
-              <option value="EUR">🇪🇺 Euro</option>
-            </select>
-            <button class="swap">⇅</button>
-            <select id="toCurrency">
-              <option value="USD">🇺🇸 Dólar Estadounidense</option>
-              <option value="EUR">🇪🇺 Euro</option>
-              <option value="COP">🇨🇴 Peso Colombiano</option>
-            </select>
-          </div>
-          <input type="number" id="amount" placeholder="Cantidad">
-          <div class="actions">
-            <button onclick="convertCurrency()" class="primary">Convertir</button>
-          </div>
+          <form id="converterForm" novalidate>
+            <div id="converterFormError" class="form-error" aria-live="assertive" hidden></div>
+            <div id="converterFormSuccess" class="form-success" aria-live="polite" hidden></div>
+            <div class="field-row">
+              <select id="fromCurrency" name="fromCurrency">
+                <option value="COP">🇨🇴 Peso Colombiano</option>
+                <option value="USD">🇺🇸 Dólar Estadounidense</option>
+                <option value="EUR">🇪🇺 Euro</option>
+              </select>
+              <button type="button" class="swap">⇅</button>
+              <select id="toCurrency" name="toCurrency">
+                <option value="USD">🇺🇸 Dólar Estadounidense</option>
+                <option value="EUR">🇪🇺 Euro</option>
+                <option value="COP">🇨🇴 Peso Colombiano</option>
+              </select>
+            </div>
+            <input type="number" id="amount" name="amount" placeholder="Cantidad" required min="0.01" step="0.01">
+            <div class="actions">
+              <button id="convertBtn" type="submit" class="primary">Convertir</button>
+            </div>
+          </form>
           <p id="result" class="result"></p>
         </div>
       </div>
@@ -154,16 +182,21 @@
         <div class="card">
           <h2 id="transferTitle">Transferencia</h2>
           <p class="muted">Envía dinero en la moneda que elijas.</p>
-          <input type="text" id="destino" placeholder="Número de cuenta o celular destino">
-          <select id="moneda">
-            <option value="COP">🇨🇴 Peso Colombiano</option>
-            <option value="USD">🇺🇸 Dólar Estadounidense</option>
-            <option value="EUR">🇪🇺 Euro</option>
-          </select>
-          <input type="number" id="monto" placeholder="Cantidad a enviar">
-          <div class="actions">
-            <button onclick="simularTransferencia()" class="primary">Enviar</button>
-          </div>
+          <form id="transferForm" novalidate>
+            <div id="transferFormError" class="form-error" aria-live="assertive" hidden></div>
+            <div id="transferFormSuccess" class="form-success" aria-live="polite" hidden></div>
+            <input type="text" id="destino" name="destino" placeholder="Número de cuenta o celular destino" required>
+            <select id="moneda" name="moneda" required>
+              <option value="COP">🇨🇴 Peso Colombiano</option>
+              <option value="USD">🇺🇸 Dólar Estadounidense</option>
+              <option value="EUR">🇪🇺 Euro</option>
+            </select>
+            <input type="number" id="monto" name="monto" placeholder="Cantidad a enviar" required min="0.01"
+              step="0.01">
+            <div class="actions">
+              <button id="transferSendBtn" type="submit" class="primary">Enviar</button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
@@ -171,7 +204,10 @@
 
 
   <!-- SCRIPT -->
+  <!-- Contenedor para notificaciones accesibles -->
+  <div id="toast" aria-live="polite" aria-atomic="true" class="toast" hidden></div>
   <script src="script.js"></script>
 
 </body>
+
 </html>
