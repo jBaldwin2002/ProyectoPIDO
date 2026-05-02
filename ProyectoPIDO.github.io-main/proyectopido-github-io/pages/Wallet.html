@@ -1,0 +1,407 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>PIDO Fintech - Digital Wallet</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#891fe5",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#1a1121",
+                    },
+                    fontFamily: {
+                        display: ["Inter"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+    <div class="flex min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside
+            class="w-64 border-r border-primary/10 bg-white dark:bg-background-dark flex flex-col justify-between p-4 sticky top-0 h-screen">
+            <div class="flex flex-col gap-8">
+                <div class="flex items-center gap-3 px-2">
+                    <div class="size-10 rounded-full bg-primary flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined">account_balance_wallet</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-primary font-bold text-lg leading-none">PIDO</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs font-medium">
+                            Fintech Pro
+                        </p>
+                    </div>
+                </div>
+                <nav class="flex flex-col gap-2">
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 transition-colors text-slate-600 dark:text-slate-300"
+                        href="Dashboard.html">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <span class="text-sm font-medium">Panel</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary border-l-4 border-primary"
+                        href="Wallet.html">
+                        <span class="material-symbols-outlined">account_balance_wallet</span>
+                        <span class="text-sm font-bold">Billeteras</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 transition-colors text-slate-600 dark:text-slate-300"
+                        href="Intercambio.html">
+                        <span class="material-symbols-outlined">swap_horizontal_circle</span>
+                        <span class="text-sm font-medium">Intercambio</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 transition-colors text-slate-600 dark:text-slate-300"
+                        href="#">
+                        <span class="material-symbols-outlined">insights</span>
+                        <span class="text-sm font-medium">Analíticas</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 transition-colors text-slate-600 dark:text-slate-300"
+                        href="#">
+                        <span class="material-symbols-outlined">settings</span>
+                        <span class="text-sm font-medium">Ajustes</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="bg-primary/5 rounded-xl p-4 flex flex-col gap-3">
+                <p class="text-xs font-semibold text-primary uppercase tracking-wider">
+                    Plan Premium
+                </p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">
+                    Desbloquea analíticas avanzadas y cambios multidivisa.
+                </p>
+                <button
+                    class="w-full bg-primary text-white py-2 rounded-lg text-sm font-bold hover:opacity-90 transition-opacity">
+                    Actualizar Ahora
+                </button>
+            </div>
+        </aside>
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <!-- Header Section -->
+            <header class="flex flex-wrap justify-between items-end gap-4 mb-8">
+                <div>
+                    <h2 class="text-3xl font-black tracking-tight">Mis Billeteras</h2>
+                    <p class="text-slate-500 dark:text-slate-400">
+                        Gestiona tus activos digitales y divisas
+                    </p>
+                </div>
+                <div class="flex gap-3">
+                    <button
+                        class="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-primary/20 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-sm hover:bg-slate-50 transition-colors">
+                        <span class="material-symbols-outlined text-lg">add_circle</span>
+                        Añadir Nueva Billetera
+                    </button>
+                    <button
+                        class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-semibold text-sm hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
+                        <span class="material-symbols-outlined text-lg">payments</span>
+                        Depositar Fondos
+                    </button>
+                </div>
+            </header>
+            <!-- Wallet Grid -->
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <!-- USD Wallet -->
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-primary/5 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex justify-between items-start mb-4">
+                        <div
+                            class="size-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xl">
+                            $
+                        </div>
+                        <div class="text-right">
+                            <span
+                                class="text-xs font-bold text-green-500 bg-green-50 px-2 py-1 rounded-full">+2.5%</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">
+                        Billetera USD
+                    </p>
+                    <h3 class="text-2xl font-black mb-4">$12,450.00</h3>
+                    <div
+                        class="h-12 w-full bg-gradient-to-r from-primary/5 to-primary/20 rounded-lg flex items-end overflow-hidden">
+                        <div class="w-full h-full bg-[url('https://placeholder.pics/svg/400x100')] bg-cover opacity-50"
+                            data-alt="Small sparkline chart showing upward trend"></div>
+                    </div>
+                </div>
+                <!-- EUR Wallet -->
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-primary/5 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex justify-between items-start mb-4">
+                        <div
+                            class="size-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-xl">
+                            €
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs font-bold text-red-500 bg-red-50 px-2 py-1 rounded-full">-0.8%</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">
+                        Billetera EUR
+                    </p>
+                    <h3 class="text-2xl font-black mb-4">€8,200.50</h3>
+                    <div
+                        class="h-12 w-full bg-gradient-to-r from-primary/5 to-primary/20 rounded-lg flex items-end overflow-hidden">
+                        <div class="w-full h-full bg-[url('https://placeholder.pics/svg/400x100')] bg-cover opacity-50"
+                            data-alt="Small sparkline chart showing slight downward trend"></div>
+                    </div>
+                </div>
+                <!-- GBP Wallet -->
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-primary/5 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex justify-between items-start mb-4">
+                        <div
+                            class="size-12 rounded-full bg-purple-100 text-primary flex items-center justify-center font-bold text-xl">
+                            £
+                        </div>
+                        <div class="text-right">
+                            <span
+                                class="text-xs font-bold text-green-500 bg-green-50 px-2 py-1 rounded-full">+1.2%</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">
+                        Billetera GBP
+                    </p>
+                    <h3 class="text-2xl font-black mb-4">£5,100.25</h3>
+                    <div
+                        class="h-12 w-full bg-gradient-to-r from-primary/5 to-primary/20 rounded-lg flex items-end overflow-hidden">
+                        <div class="w-full h-full bg-[url('https://placeholder.pics/svg/400x100')] bg-cover opacity-50"
+                            data-alt="Small sparkline chart showing moderate growth"></div>
+                    </div>
+                </div>
+            </section>
+            <!-- Bottom Section: Cards & Analytics -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Manage Cards Section -->
+                <section class="lg:col-span-2">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-bold">Gestionar Tarjetas</h3>
+                        <button class="text-primary text-sm font-bold hover:underline">
+                            Ver Todo
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Physical Card -->
+                        <div class="relative h-48 rounded-2xl p-6 flex flex-col justify-between overflow-hidden shadow-xl"
+                            style="
+                  background: linear-gradient(135deg, #891fe5 0%, #4c1d95 100%);
+                ">
+                            <div class="relative z-10 flex justify-between items-start">
+                                <span class="material-symbols-outlined text-white/80 text-4xl">contactless</span>
+                                <span class="text-white/80 font-bold italic text-xl">PIDO</span>
+                            </div>
+                            <div class="relative z-10">
+                                <p class="text-white/60 text-xs tracking-widest uppercase mb-1">
+                                    Número de Tarjeta
+                                </p>
+                                <p class="text-white text-lg font-mono tracking-widest">
+                                    **** **** **** 4289
+                                </p>
+                            </div>
+                            <div class="relative z-10 flex justify-between items-end">
+                                <div>
+                                    <p class="text-white/60 text-[10px] uppercase tracking-widest">
+                                        Titular
+                                    </p>
+                                    <p class="text-white font-medium">Alex Thompson</p>
+                                </div>
+                                <div class="flex gap-3">
+                                    <button
+                                        class="bg-white/20 backdrop-blur-md p-1.5 rounded-lg hover:bg-white/30 transition-colors">
+                                        <span class="material-symbols-outlined text-white text-sm">ac_unit</span>
+                                    </button>
+                                    <button
+                                        class="bg-white/20 backdrop-blur-md p-1.5 rounded-lg hover:bg-white/30 transition-colors">
+                                        <span class="material-symbols-outlined text-white text-sm">visibility</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="absolute -right-10 -bottom-10 size-40 bg-white/5 rounded-full"></div>
+                        </div>
+                        <!-- Virtual Card -->
+                        <div
+                            class="relative h-48 rounded-2xl p-6 flex flex-col justify-between overflow-hidden border-2 border-dashed border-primary/20 bg-white dark:bg-slate-800">
+                            <div class="flex justify-between items-start">
+                                <span
+                                    class="material-symbols-outlined text-primary/40 text-4xl">nest_remote_comfort_sensor</span>
+                                <span class="text-primary/40 font-bold italic text-xl">VIRTUAL</span>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-slate-400 text-xs font-bold mb-2">
+                                    Tarjeta de Asistente de Compras
+                                </p>
+                                <p class="text-slate-800 dark:text-slate-100 text-lg font-mono tracking-widest">
+                                    **** **** **** 8821
+                                </p>
+                            </div>
+                            <div class="flex justify-center gap-4">
+                                <button
+                                    class="flex items-center gap-1 text-xs font-bold text-primary px-3 py-1.5 rounded-full bg-primary/10">
+                                    <span class="material-symbols-outlined text-xs">lock</span>
+                                    Congelar
+                                </button>
+                                <button
+                                    class="flex items-center gap-1 text-xs font-bold text-slate-500 px-3 py-1.5 rounded-full bg-slate-100">
+                                    <span class="material-symbols-outlined text-xs">info</span>
+                                    Detalles
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Analytics Widget -->
+                <section>
+                    <h3 class="text-xl font-bold mb-6">Desglose de Gastos</h3>
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-primary/5">
+                        <div class="relative size-40 mx-auto mb-6">
+                            <!-- Circular Progress Simulation -->
+                            <svg class="size-full" viewbox="0 0 36 36">
+                                <path class="text-slate-100 dark:text-slate-700"
+                                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    fill="none" stroke="currentColor" stroke-width="3"></path>
+                                <path class="text-primary"
+                                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    fill="none" stroke="currentColor" stroke-dasharray="75, 100" stroke-linecap="round"
+                                    stroke-width="3"></path>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <p class="text-xs text-slate-500">Límite Mensual</p>
+                                <p class="text-xl font-black">75%</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-center justify-between text-sm">
+                                <div class="flex items-center gap-2">
+                                    <span class="size-2 rounded-full bg-primary"></span>
+                                    <span class="text-slate-600 dark:text-slate-300">Suscripciones</span>
+                                </div>
+                                <span class="font-bold">$450.00</span>
+                            </li>
+                            <li class="flex items-center justify-between text-sm">
+                                <div class="flex items-center gap-2">
+                                    <span class="size-2 rounded-full bg-blue-500"></span>
+                                    <span class="text-slate-600 dark:text-slate-300">Comidas fuera</span>
+                                </div>
+                                <span class="font-bold">$1,200.00</span>
+                            </li>
+                            <li class="flex items-center justify-between text-sm">
+                                <div class="flex items-center gap-2">
+                                    <span class="size-2 rounded-full bg-slate-300"></span>
+                                    <span class="text-slate-600 dark:text-slate-300">Otros</span>
+                                </div>
+                                <span class="font-bold">$850.00</span>
+                            </li>
+                        </ul>
+                        <button
+                            class="w-full mt-6 py-2 border border-primary/20 text-primary text-sm font-bold rounded-lg hover:bg-primary/5 transition-colors">
+                            Informe Mensual Completo
+                        </button>
+                    </div>
+                </section>
+            </div>
+            <!-- Recent Activity Table Placeholder -->
+            <section class="mt-10">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-bold">Actividad Reciente</h3>
+                    <div class="flex gap-2">
+                        <button
+                            class="p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                            <span class="material-symbols-outlined text-sm">filter_list</span>
+                        </button>
+                        <button
+                            class="p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                            <span class="material-symbols-outlined text-sm">download</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-primary/5">
+                    <table class="w-full text-left">
+                        <thead class="bg-primary/5 text-slate-500 text-xs font-bold uppercase">
+                            <tr>
+                                <th class="px-6 py-4">Transacción</th>
+                                <th class="px-6 py-4">Fecha</th>
+                                <th class="px-6 py-4">Estado</th>
+                                <th class="px-6 py-4 text-right">Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="size-8 rounded bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
+                                            <span
+                                                class="material-symbols-outlined text-primary text-sm">shopping_bag</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold">Apple Store Online</p>
+                                            <p class="text-xs text-slate-500">
+                                                Tecnología y Electrónica
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-slate-500">Oct 12, 2023</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="text-[10px] font-bold px-2 py-1 rounded bg-green-100 text-green-700 uppercase">Completado</span>
+                                </td>
+                                <td class="px-6 py-4 text-right font-bold text-sm">
+                                    -$1,299.00
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="size-8 rounded bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
+                                            <span
+                                                class="material-symbols-outlined text-primary text-sm">arrow_downward</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold">Transferencia Entrante</p>
+                                            <p class="text-xs text-slate-500">
+                                                Desde Banco Principal
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-slate-500">Oct 10, 2023</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="text-[10px] font-bold px-2 py-1 rounded bg-blue-100 text-blue-700 uppercase">Pendiente</span>
+                                </td>
+                                <td class="px-6 py-4 text-right font-bold text-sm text-green-500">
+                                    +$5,000.00
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

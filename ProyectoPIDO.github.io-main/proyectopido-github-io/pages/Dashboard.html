@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>PIDO - Plataforma De Intercambio De Divisas Online</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#891fe5",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#1a1121",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+    <div class="flex min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside
+            class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark hidden lg:flex flex-col sticky top-0 h-screen">
+            <div class="p-6 flex items-center gap-3">
+                <div class="bg-primary rounded-lg p-2 text-white">
+                    <span class="material-symbols-outlined block" style="">currency_exchange</span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-primary" style="">PIDO</h1>
+                    <p class="text-[10px] uppercase tracking-widest text-slate-500 font-semibold" style="">Fintech
+                        Platform</p>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 py-4 space-y-1">
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary font-medium"
+                    href="Dashboard.html" style="">
+                    <span class="material-symbols-outlined" style="">home</span>
+                    <span class="" style="">Inicio</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                    href="Wallet.html" style="">
+                    <span class="material-symbols-outlined" style="">account_balance_wallet</span>
+                    <span class="" style="">Billetera</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                    href="Intercambio.html" style="">
+                    <span class="material-symbols-outlined" style="">swap_horiz</span>
+                    <span class="" style="">Intercambio</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                    href="#" style="">
+                    <span class="material-symbols-outlined" style="">history</span>
+                    <span class="" style="">Historial</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                    href="#" style="">
+                    <span class="material-symbols-outlined" style="">person</span>
+                    <span class="" style="">Perfil</span>
+                </a>
+            </nav>
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+                <button
+                    class="w-full bg-primary text-white py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors"
+                    style=""><span class="material-symbols-outlined text-sm" style="">add</span> Nueva
+                    Transacción</button>
+            </div>
+        </aside>
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col min-w-0">
+            <!-- Header -->
+            <header
+                class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-10 px-6 flex items-center justify-between">
+                <div class="flex items-center gap-4 flex-1">
+                    <div class="relative w-full max-w-md hidden sm:block">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl"
+                            style="">search</span>
+                        <input
+                            class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary/50 transition-all text-sm"
+                            placeholder="Buscar mercados, activos..." type="text">
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full relative"
+                        style="">
+                        <span class="material-symbols-outlined" style="">notifications</span>
+                        <span
+                            class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-background-dark"></span>
+                    </button>
+                    <div class="h-8 w-[1px] bg-slate-200 dark:border-slate-800 mx-2"></div>
+                    <div class="flex items-center gap-3">
+                        <div class="text-right hidden md:block">
+                            <p class="text-sm font-semibold leading-none" style="">Alex Thompson</p>
+                            <p class="text-xs text-slate-500 mt-1" style="">Miembro Premium</p>
+                        </div>
+                        <img class="w-10 h-10 rounded-full border-2 border-primary/20 object-cover"
+                            data-alt="User profile picture showing a professional male portrait"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3Xy8Q0W0nj1yyMF-OV6Z2rAlxhqDjU0oT1TtozMnGK3xzb5Fi9Qm5QhZIWP8zsUgNkFXGMagcKK0RQXLNg2tW-KCNkcdGAm9LO7-C96FTVvz7LDsXrp34MHACSKjV7fZCF0CgPAGLbN07lstz9-MpogO--rb2i5WyveAkFhu5chAd8xyjtB0imLxmIHjMw47ZLVH3HEudkNNC--aeH1iEZNmqRuHFNrZpTpjU6srMjQcBhyd1uhWKR9XmQgM9TfAUw0RzHlbsmkZq"
+                            style="">
+                        <button class="p-2 text-slate-500 hover:text-red-500 transition-colors" style="">
+                            <span class="material-symbols-outlined" style="">logout</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <!-- Dashboard Content -->
+            <div class="p-6 lg:p-8 space-y-8 max-w-7xl mx-auto w-full">
+                <!-- Welcome Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                        <h2 class="text-3xl font-bold tracking-tight" style="">Resumen del Tablero</h2>
+                        <p class="text-slate-500 dark:text-slate-400 mt-1" style="">Bienvenido de nuevo, Alex. Tus
+                            activos aumentaron un 4.2% esta semana.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button
+                            class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors"
+                            style=""><span class="material-symbols-outlined text-lg" style="">download</span> Estado de
+                            Cuenta</button>
+                        <button
+                            class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all"
+                            style=""><span class="material-symbols-outlined text-lg" style="">bolt</span> Acción
+                            Rápida</button>
+                    </div>
+                </div>
+                <!-- Wallet Overview -->
+                <section>
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2" style=""><span
+                            class="material-symbols-outlined text-primary" style="">account_balance_wallet</span> Saldos
+                        de Billetera</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- USD Card -->
+                        <div
+                            class="bg-gradient-to-br from-primary to-[#a855f7] rounded-xl p-6 text-white shadow-xl relative overflow-hidden group">
+                            <div
+                                class="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-110 transition-transform duration-500">
+                                <span class="material-symbols-outlined text-9xl" style="">attach_money</span>
+                            </div>
+                            <div class="relative z-10">
+                                <div class="flex justify-between items-start mb-4">
+                                    <span class="text-sm font-medium opacity-80 uppercase tracking-wider" style="">Saldo
+                                        en Dólares US</span>
+                                    <div class="bg-white/20 p-1.5 rounded-lg">
+                                        <span class="material-symbols-outlined text-sm" style="">show_chart</span>
+                                    </div>
+                                </div>
+                                <h4 class="text-3xl font-bold mb-1" style="">$12,450.00</h4>
+                                <p class="text-xs opacity-80 flex items-center gap-1" style=""><span
+                                        class="material-symbols-outlined text-xs" style="">trending_up</span> +2.4% vs
+                                    mes anterior</p>
+                            </div>
+                        </div>
+                        <!-- EUR Card -->
+                        <div
+                            class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg text-blue-600">
+                                    <span class="material-symbols-outlined" style="">euro_symbol</span>
+                                </div>
+                                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"
+                                    style="">Cuenta Principal</span>
+                            </div>
+                            <p class="text-sm text-slate-500 mb-1" style="">Saldo en Euros</p>
+                            <h4 class="text-2xl font-bold" style="">€8,200.00</h4>
+                            <div
+                                class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex justify-between items-center text-xs">
+                                <span class="text-slate-400" style="">Cuenta Principal</span>
+                                <span class="text-emerald-500 font-medium" style="">Verificada</span>
+                            </div>
+                        </div>
+                        <!-- Local Card (MXN example) -->
+                        <div
+                            class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="p-2 bg-emerald-50 dark:bg-emerald-900/30 rounded-lg text-emerald-600">
+                                    <span class="material-symbols-outlined" style="">payments</span>
+                                </div>
+                                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"
+                                    style="">Cuenta Secundaria</span>
+                            </div>
+                            <p class="text-sm text-slate-500 mb-1" style="">Saldo en Pesos Colombianos</p>
+                            <h4 class="text-2xl font-bold" style="">$245,600.00</h4>
+                            <div
+                                class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex justify-between items-center text-xs">
+                                <span class="text-slate-400" style="">Cuenta Secundaria</span>
+                                <span class="text-emerald-500 font-medium" style="">Activo</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Middle Section: Actions & Rates -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Quick Actions & Rates -->
+                    <div class="lg:col-span-2 space-y-8">
+                        <!-- Quick Actions Buttons -->
+                        <div class="grid grid-cols-3 gap-4">
+                            <button
+                                class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all group"
+                                style="">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined" style="">send</span>
+                                </div>
+                                <span class="text-sm font-semibold" style="">Enviar</span>
+                            </button>
+                            <button
+                                class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all group"
+                                style="">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined" style="">swap_calls</span>
+                                </div>
+                                <span class="text-sm font-semibold" style="">Intercambiar</span>
+                            </button>
+                            <button
+                                class="flex flex-col items-center justify-center p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all group"
+                                style="">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined" style="">add_circle</span>
+                                </div>
+                                <span class="text-sm font-semibold" style="">Recargar</span>
+                            </button>
+                        </div>
+                        <!-- Live Rates Widget -->
+                        <div
+                            class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                            <div
+                                class="p-4 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+                                <h3 class="font-bold flex items-center gap-2" style="">
+                                    <span class="material-symbols-outlined text-primary text-xl"
+                                        style="">monitoring</span> Live Market Rates
+                                </h3>
+                                <span
+                                    class="text-xs text-slate-400 font-medium bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded"
+                                    style="">Tiempo Real</span>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-sm">
+                                    <thead class="bg-slate-50 dark:bg-slate-900/50 text-slate-500">
+                                        <tr>
+                                            <th class="px-6 py-3 font-semibold uppercase tracking-wider text-[10px]"
+                                                style="">Par de Divisas</th>
+                                            <th class="px-6 py-3 font-semibold uppercase tracking-wider text-[10px]"
+                                                style="">Precio</th>
+                                            <th class="px-6 py-3 font-semibold uppercase tracking-wider text-[10px]"
+                                                style="">Cambio 24h</th>
+                                            <th class="px-6 py-3 font-semibold uppercase tracking-wider text-[10px]"
+                                                style="">Tendencia</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+                                        <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                                            <td class="px-6 py-4 font-semibold" style="">EUR / USD</td>
+                                            <td class="px-6 py-4" style="">1.0845</td>
+                                            <td class="px-6 py-4 text-emerald-500 font-medium" style="">+0.42%</td>
+                                            <td class="px-6 py-4" style="">
+                                                <div
+                                                    class="w-20 h-6 bg-emerald-500/20 rounded relative overflow-hidden">
+                                                    <div
+                                                        class="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent animate-pulse">
+                                                    </div>
+                                                    <div class="flex items-center justify-center h-full">
+                                                        <span class="material-symbols-outlined text-emerald-500 text-sm"
+                                                            style="">trending_up</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                                            <td class="px-6 py-4 font-semibold" style="">GBP / USD</td>
+                                            <td class="px-6 py-4" style="">1.2632</td>
+                                            <td class="px-6 py-4 text-red-500 font-medium" style="">-0.15%</td>
+                                            <td class="px-6 py-4" style="">
+                                                <div class="w-20 h-6 bg-red-500/20 rounded relative overflow-hidden">
+                                                    <div class="flex items-center justify-center h-full">
+                                                        <span class="material-symbols-outlined text-red-500 text-sm"
+                                                            style="">trending_down</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                                            <td class="px-6 py-4 font-semibold" style="">USD / JPY</td>
+                                            <td class="px-6 py-4" style="">148.12</td>
+                                            <td class="px-6 py-4 text-emerald-500 font-medium" style="">+1.12%</td>
+                                            <td class="px-6 py-4" style="">
+                                                <div class="w-20 h-6 bg-emerald-500/20 rounded relative">
+                                                    <div class="flex items-center justify-center h-full">
+                                                        <span class="material-symbols-outlined text-emerald-500 text-sm"
+                                                            style="">trending_up</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recent Transactions -->
+                    <div class="lg:col-span-1">
+                        <div
+                            class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col h-full">
+                            <div
+                                class="p-4 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+                                <h3 class="font-bold flex items-center gap-2" style=""><span
+                                        class="material-symbols-outlined text-primary text-xl" style="">list_alt</span>
+                                    Actividad Reciente</h3>
+                                <a class="text-xs text-primary font-bold hover:underline" href="#" style="">Ver Todo</a>
+                            </div>
+                            <div class="p-4 flex-1 space-y-4">
+                                <!-- Transaction 1 -->
+                                <div
+                                    class="flex items-center gap-4 p-3 rounded-lg border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-lg" style="">call_received</span>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-bold truncate" style="">Transferencia de Upwork</p>
+                                        <p class="text-[10px] text-slate-500" style="">Hoy, 09:42 AM</p>
+                                    </div>
+                                    <div class="text-right shrink-0">
+                                        <p class="text-sm font-bold text-emerald-600" style="">+$2,400.00</p>
+                                        <span
+                                            class="text-[10px] bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 px-1.5 py-0.5 rounded font-medium"
+                                            style="">Completado</span>
+                                    </div>
+                                </div>
+                                <!-- Transaction 2 -->
+                                <div
+                                    class="flex items-center gap-4 p-3 rounded-lg border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-lg" style="">swap_horiz</span>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-bold truncate" style="">Cambio USD a EUR</p>
+                                        <p class="text-[10px] text-slate-500" style="">Ayer, 04:15 PM</p>
+                                    </div>
+                                    <div class="text-right shrink-0">
+                                        <p class="text-sm font-bold text-slate-700 dark:text-slate-200" style="">
+                                            -$1,500.00</p>
+                                        <span
+                                            class="text-[10px] bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 px-1.5 py-0.5 rounded font-medium"
+                                            style="">Pendiente</span>
+                                    </div>
+                                </div>
+                                <!-- Transaction 3 -->
+                                <div
+                                    class="flex items-center gap-4 p-3 rounded-lg border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-lg" style="">shopping_cart</span>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-bold truncate" style="">Suscripción Amazon Prime</p>
+                                        <p class="text-[10px] text-slate-500" style="">Hace 2 días</p>
+                                    </div>
+                                    <div class="text-right shrink-0">
+                                        <p class="text-sm font-bold text-slate-700 dark:text-slate-200" style="">-$14.99
+                                        </p>
+                                        <span
+                                            class="text-[10px] bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 px-1.5 py-0.5 rounded font-medium"
+                                            style="">Completado</span>
+                                    </div>
+                                </div>
+                                <!-- Transaction 4 -->
+                                <div
+                                    class="flex items-center gap-4 p-3 rounded-lg border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 flex items-center justify-center shrink-0">
+                                        <span class="material-symbols-outlined text-lg" style="">call_received</span>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-bold truncate" style="">Regalo de Sarah</p>
+                                        <p class="text-[10px] text-slate-500" style="">Hace 3 días</p>
+                                    </div>
+                                    <div class="text-right shrink-0">
+                                        <p class="text-sm font-bold text-emerald-600" style="">+$150.00</p>
+                                        <span
+                                            class="text-[10px] bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 px-1.5 py-0.5 rounded font-medium"
+                                            style="">Completado</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4 mt-auto">
+                                <div class="bg-primary/5 rounded-xl p-4 border border-primary/10">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="material-symbols-outlined text-primary text-sm"
+                                            style="">verified_user</span>
+                                        <span class="text-xs font-bold uppercase tracking-widest text-primary"
+                                            style="">Security Tip</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400" style="">Habilite 2FA para
+                                        asegurar sus transacciones de intercambio y evitar accesos no autorizados.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

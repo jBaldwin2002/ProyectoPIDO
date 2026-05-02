@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>PIDO - Transferencia P2P</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.375rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .sidebar-active {
+            background-color: rgba(19, 91, 236, 0.1);
+            color: #135bec;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="w-72 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col">
+            <div class="p-8">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="bg-primary size-10 rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
+                        <span class="material-symbols-outlined">account_balance_wallet</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-slate-900 dark:text-white text-xl font-bold tracking-tight">PIDO</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-[10px] font-bold uppercase tracking-widest">
+                            Fintech Solutions</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 space-y-1">
+                <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-xl transition-all group"
+                    href="#">
+                    <span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+                    <span class="text-sm font-semibold">Panel</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-xl transition-all group"
+                    href="#">
+                    <span class="material-symbols-outlined group-hover:text-primary transition-colors">swap_horiz</span>
+                    <span class="text-sm font-semibold">Cambio</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 sidebar-active rounded-xl transition-all" href="#">
+                    <span class="material-symbols-outlined">send</span>
+                    <span class="text-sm font-semibold">Transferencias</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-xl transition-all group"
+                    href="#">
+                    <span
+                        class="material-symbols-outlined group-hover:text-primary transition-colors">account_balance</span>
+                    <span class="text-sm font-semibold">Billeteras</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-xl transition-all group"
+                    href="#">
+                    <span class="material-symbols-outlined group-hover:text-primary transition-colors">settings</span>
+                    <span class="text-sm font-semibold">Configuración</span>
+                </a>
+            </nav>
+            <div class="p-6 mt-auto">
+                <div
+                    class="p-5 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
+                    <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">
+                        Saldo Total</p>
+                    <p class="text-xl font-bold text-slate-900 dark:text-white">$24,560.00</p>
+                </div>
+            </div>
+        </aside>
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-950 p-10">
+            <div class="max-w-5xl mx-auto">
+                <header class="mb-10">
+                    <h2 class="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Enviar Dinero</h2>
+                    <p class="text-slate-500 dark:text-slate-400 mt-2 text-lg">Transfiere fondos al instante a cualquier
+                        usuario de PIDO en todo el mundo.</p>
+                </header>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                    <!-- Left Column: Form -->
+                    <div class="lg:col-span-2 space-y-8">
+                        <!-- 1. Contact Selection -->
+                        <section
+                            class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center gap-3 mb-6">
+                                <span
+                                    class="flex items-center justify-center size-8 rounded-full bg-primary/10 text-primary text-sm font-bold">1</span>
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Elegir Contacto</h3>
+                            </div>
+                            <div class="relative mb-8">
+                                <span
+                                    class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                                <input
+                                    class="w-full pl-12 pr-4 py-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                                    placeholder="Buscar por nombre, correo o teléfono" type="text" />
+                            </div>
+                            <div class="space-y-5">
+                                <p
+                                    class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                                    Contactos Recientes</p>
+                                <div class="flex flex-wrap gap-8">
+                                    <button class="flex flex-col items-center gap-3 group">
+                                        <div
+                                            class="size-16 rounded-full ring-4 ring-primary ring-offset-4 dark:ring-offset-slate-900 transition-all">
+                                            <img class="w-full h-full rounded-full object-cover"
+                                                data-alt="Retrato Sarah J."
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBia20UNdwXAg5WG8eBr2U7qLETajbcsAMTgsDQZxn6ZVQPmNHM-JEc3qgfJozKF2OSipQKhyFdy8k_YTdsUjGMlkUlGTayqnH8sW8FWyWgRP6UnwL26l6HrixlXocUiIoEU2MAaXP25ZFTDPTPXuby9Z20k9AacDvpUMxxDr6rL6qJ5DodMcCOBK55N5KNf8QO3GHtccm_OQeDq1CAtV9FJowDtpkrOQvelJRKj9-s6BX6akB-ePPTiik5Oys9d1JKhBSaTa8HHEI9" />
+                                        </div>
+                                        <span
+                                            class="text-xs font-bold text-slate-900 dark:text-slate-300 group-hover:text-primary">Sarah
+                                            J.</span>
+                                    </button>
+                                    <button class="flex flex-col items-center gap-3 group">
+                                        <div
+                                            class="size-16 rounded-full ring-0 ring-primary/20 ring-offset-0 transition-all hover:ring-4 hover:ring-offset-4 dark:hover:ring-offset-slate-900">
+                                            <img class="w-full h-full rounded-full object-cover"
+                                                data-alt="Retrato Michael R."
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmLM6P7ZAzceq3TxzS2QU1558P9YZ5P0Ri8QWDmsG_jbovlbFXh4omOAKSSGHMEkgmdvHJejSe3ld26-E2aFZLSiRWL8bX2WhIzmb4NATjnmHRy5x9CtP_H8w2chwM-WboVD4cAyIbNyerzTDsvwX07g_ysbfXPu_N13w4AdPyzGSCanOieWeR1v-BrKAIJvXYE6vIlV_Ixy5bmD0Apvkf6uRi2uX0pexK-GVmPxK12GEL4Cqv3FCXNiHr6Rat1Pmal0i91jZqoJHV" />
+                                        </div>
+                                        <span
+                                            class="text-xs font-bold text-slate-500 dark:text-slate-400 group-hover:text-primary">Michael
+                                            R.</span>
+                                    </button>
+                                    <button class="flex flex-col items-center gap-3 group">
+                                        <div
+                                            class="size-16 rounded-full ring-0 ring-primary/20 ring-offset-0 transition-all hover:ring-4 hover:ring-offset-4 dark:hover:ring-offset-slate-900">
+                                            <img class="w-full h-full rounded-full object-cover"
+                                                data-alt="Retrato Alex K."
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfmpz-CFXVHQqejoko2FcXYtXl6HuwmjFUwwNAfgLJN2ehTDCWsvwwOB9g25fSZIxMhqAfVZ7dxx1DYyhe5RmGp_D_94RGIJopLUkkF8OBiq6hBbjZ0opHfmMNCc2qKEScTCISVWUYwkCU7Thz3_vZzCDFBwIYWHhWXSi4GN6kCcE7RZvZuRhj5OlpwrVua503046sujc3U3okL_7TdZtsxeFwC9K-wJ_WERZnWt9w38STmoJ0snhdQ4k7xXjwtoX5A8e3PD5aLuVD" />
+                                        </div>
+                                        <span
+                                            class="text-xs font-bold text-slate-500 dark:text-slate-400 group-hover:text-primary">Alex
+                                            K.</span>
+                                    </button>
+                                    <button class="flex flex-col items-center gap-3 group">
+                                        <div
+                                            class="size-16 rounded-full ring-0 ring-primary/20 ring-offset-0 transition-all hover:ring-4 hover:ring-offset-4 dark:hover:ring-offset-slate-900">
+                                            <img class="w-full h-full rounded-full object-cover"
+                                                data-alt="Retrato David W."
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAbwk55Ibpcwcsj3H2Ns54s_rNAlP7Ag6eSXi2YOeDvx1aDYhsoMi89yCX8m-5XErPm_gGG52vtj80g7JegR4IWVAi30GHHFbyh55dbUEa-325Rpfd9mkDgl2rig5nP-n-6TJsUrGjQYzYxm1DYJdat1UWPN8yO5dIRBzmG1PHvPztgK28z4S5URj1XCJqzHdkBSb18NXeL3o-wL1yb4a01vjCJ9c-r2RDIBosl7EGFerwy-wF72YEsejTVJ_4XCnRkZRdE256nzyn" />
+                                        </div>
+                                        <span
+                                            class="text-xs font-bold text-slate-500 dark:text-slate-400 group-hover:text-primary">David
+                                            W.</span>
+                                    </button>
+                                    <button class="flex flex-col items-center justify-center gap-3 group">
+                                        <div
+                                            class="size-16 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 group-hover:text-primary group-hover:bg-primary/10 transition-all border-2 border-dashed border-slate-200 dark:border-slate-700">
+                                            <span class="material-symbols-outlined">add</span>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Ver
+                                            más</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- 2. Transfer Details -->
+                        <section
+                            class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center gap-3 mb-8">
+                                <span
+                                    class="flex items-center justify-center size-8 rounded-full bg-primary/10 text-primary text-sm font-bold">2</span>
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Detalles de la
+                                    Transferencia</h3>
+                            </div>
+                            <div class="space-y-8">
+                                <!-- Amount Input -->
+                                <div class="space-y-3">
+                                    <label
+                                        class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Monto
+                                        a Enviar</label>
+                                    <div class="flex items-center gap-4">
+                                        <div class="relative flex-1">
+                                            <input
+                                                class="w-full pl-6 pr-16 py-5 text-3xl font-bold rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all"
+                                                type="number" value="150.00" />
+                                            <span
+                                                class="absolute right-6 top-1/2 -translate-y-1/2 font-bold text-slate-400">USD</span>
+                                        </div>
+                                        <div class="w-36">
+                                            <div class="relative">
+                                                <select
+                                                    class="w-full py-5 px-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary outline-none appearance-none cursor-pointer font-bold">
+                                                    <option value="USD">USD</option>
+                                                    <option value="EUR">EUR</option>
+                                                    <option value="GBP">GBP</option>
+                                                    <option value="BTC">BTC</option>
+                                                </select>
+                                                <span
+                                                    class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">expand_more</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Wallet Selection -->
+                                <div class="space-y-4">
+                                    <label
+                                        class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Seleccionar
+                                        Billetera</label>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <label
+                                            class="relative flex items-center p-5 border-2 border-primary bg-primary/5 rounded-2xl cursor-pointer group transition-all">
+                                            <input checked="" class="sr-only" name="wallet" type="radio" />
+                                            <div class="flex items-center gap-4">
+                                                <div class="bg-primary/20 p-3 rounded-xl text-primary">
+                                                    <span class="material-symbols-outlined">payments</span>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-bold text-slate-900 dark:text-white">
+                                                        Billetera Principal</p>
+                                                    <p class="text-xs text-slate-500 font-medium">$12,450.00 disponible
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="ml-auto text-primary">
+                                                <span class="material-symbols-outlined">check_circle</span>
+                                            </div>
+                                        </label>
+                                        <label
+                                            class="relative flex items-center p-5 border border-slate-200 dark:border-slate-700 hover:border-primary/50 hover:bg-slate-50 dark:hover:bg-slate-800/30 rounded-2xl cursor-pointer transition-all">
+                                            <input class="sr-only" name="wallet" type="radio" />
+                                            <div class="flex items-center gap-4">
+                                                <div
+                                                    class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl text-slate-500">
+                                                    <span class="material-symbols-outlined">savings</span>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-bold text-slate-900 dark:text-white">Cuenta
+                                                        de Ahorros</p>
+                                                    <p class="text-xs text-slate-500 font-medium">$8,110.50 disponible
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- Concept Input -->
+                                <div class="space-y-3">
+                                    <label
+                                        class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Concepto
+                                        (Opcional)</label>
+                                    <textarea
+                                        class="w-full p-5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary outline-none resize-none transition-all"
+                                        placeholder="¿Cuál es el motivo de este envío?" rows="2"></textarea>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <!-- Right Column: Summary -->
+                    <div class="space-y-8">
+                        <div
+                            class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200 dark:border-slate-800 sticky top-10">
+                            <h3 class="text-xl font-bold mb-8 text-slate-900 dark:text-white">Resumen del Envío</h3>
+                            <div class="space-y-5 mb-10">
+                                <div class="flex justify-between items-center">
+                                    <span
+                                        class="text-sm font-medium text-slate-500 dark:text-slate-400">Destinatario</span>
+                                    <span class="text-sm font-bold text-slate-900 dark:text-white">Sarah Jenkins</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-slate-500 dark:text-slate-400">Monto</span>
+                                    <span class="text-sm font-bold text-slate-900 dark:text-white">$150.00</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-slate-500 dark:text-slate-400">Comisión</span>
+                                    <span class="text-sm font-bold text-emerald-600 dark:text-emerald-400">Gratis</span>
+                                </div>
+                                <div class="pt-5 mt-2 border-t border-slate-100 dark:border-slate-800">
+                                    <div class="flex justify-between items-end">
+                                        <span class="text-sm font-bold text-slate-900 dark:text-white">Total a
+                                            Debitar</span>
+                                        <span class="text-3xl font-black text-primary">$150.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <button
+                                    class="w-full bg-primary hover:bg-blue-700 text-white font-bold py-5 rounded-2xl shadow-xl shadow-primary/25 transition-all flex items-center justify-center gap-2 transform active:scale-[0.98]">
+                                    <span class="text-base">Continuar</span>
+                                    <span class="material-symbols-outlined text-xl">arrow_forward</span>
+                                </button>
+                                <p
+                                    class="text-[10px] text-center text-slate-400 dark:text-slate-500 leading-relaxed px-2">
+                                    Al continuar, aceptas los Términos y Condiciones de Transferencia de PIDO. Los
+                                    envíos suelen ser instantáneos.
+                                </p>
+                            </div>
+                            <!-- Info Alert -->
+                            <div
+                                class="mt-10 p-4 bg-amber-50 dark:bg-amber-900/10 rounded-xl border border-amber-100 dark:border-amber-900/20 flex gap-4">
+                                <span
+                                    class="material-symbols-outlined text-amber-600 dark:text-amber-500 text-sm mt-0.5">warning</span>
+                                <p class="text-[11px] text-amber-800 dark:text-amber-400 font-medium leading-normal">
+                                    Verifica siempre los datos. Los envíos entre usuarios de PIDO son irreversibles una
+                                    vez confirmados.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Security Message -->
+                        <div class="flex items-center justify-center gap-2.5 text-slate-400/70 dark:text-slate-600">
+                            <span class="material-symbols-outlined text-lg">verified_user</span>
+                            <span class="text-[10px] uppercase font-bold tracking-[0.2em]">Cifrado de extremo a
+                                extremo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
