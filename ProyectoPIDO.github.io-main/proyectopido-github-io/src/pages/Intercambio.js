@@ -3,28 +3,40 @@ import Sidebar from '../components/Sidebar';
 
 function Intercambio() {
 
-    const [fromCurrency, setFromCurrency] = useState('USD');
-    const [toCurrency, setToCurrency] = useState('EUR');
-    const [fromAmount, setFromAmount] = useState(100);
-    const [toAmount, setToAmount] = useState(92);
+    const [fromCurrency, setFromCurrency] = useState('COP');
+    const [toCurrency, setToCurrency] = useState('USD');
+    const [fromAmount, setFromAmount] = useState(0);
+    const [toAmount, setToAmount] = useState(0);
 
     const [mensaje, setMensaje] = useState("");
     const [wallet, setWallet] = useState({});
 
-    // Tasas demo
+    // 🔥 Tasas con COP
     const rates = {
-        USD: { EUR: 0.92, GBP: 0.78 },
-        EUR: { USD: 1.08, GBP: 0.85 },
-        GBP: { USD: 1.28, EUR: 1.17 }
+        USD: { EUR: 0.92, GBP: 0.78, COP: 4000 },
+        EUR: { USD: 1.08, GBP: 0.85, COP: 4300 },
+        GBP: { USD: 1.28, EUR: 1.17, COP: 5100 },
+        COP: { USD: 0.00025, EUR: 0.00023, GBP: 0.00020 }
     };
 
-    // Cargar wallet
+    // 🔥 Inicializar wallet
     useEffect(() => {
-        const data = JSON.parse(localStorage.getItem("wallet"));
-        if (data) setWallet(data);
+        let data = JSON.parse(localStorage.getItem("wallet"));
+
+        if (!data) {
+            data = {
+                COP: 500000,
+                USD: 0,
+                EUR: 0,
+                GBP: 0
+            };
+            localStorage.setItem("wallet", JSON.stringify(data));
+        }
+
+        setWallet(data);
     }, []);
 
-    // ✅ VALIDACIÓN DE MONTO
+    // ✅ Validación monto
     const handleChangeAmount = (value) => {
 
         if (!value || value <= 0) {
@@ -41,37 +53,30 @@ function Intercambio() {
         }
     };
 
-    // Swap monedas
+    // 🔁 Swap
     const handleSwap = () => {
         const temp = fromCurrency;
         setFromCurrency(toCurrency);
         setToCurrency(temp);
     };
 
-    // Intercambio
+    // 💱 Intercambio
     const handleExchange = () => {
 
-        // ✅ VALIDACIÓN: misma moneda
         if (fromCurrency === toCurrency) {
             setMensaje("⚠️ Selecciona monedas diferentes");
             setTimeout(() => setMensaje(""), 3000);
             return;
         }
 
-        const currentWallet = JSON.parse(localStorage.getItem("wallet")) || {
-            USD: 1000,
-            EUR: 1000,
-            GBP: 1000
-        };
+        const currentWallet = JSON.parse(localStorage.getItem("wallet"));
 
-        // ✅ VALIDACIÓN: saldo
         if (currentWallet[fromCurrency] < fromAmount) {
             setMensaje("❌ Saldo insuficiente");
             setTimeout(() => setMensaje(""), 3000);
             return;
         }
 
-        // Actualizar wallet
         currentWallet[fromCurrency] -= fromAmount;
         currentWallet[toCurrency] += parseFloat(toAmount);
 
@@ -112,7 +117,7 @@ function Intercambio() {
                         <label className="block text-sm mb-1">Desde</label>
 
                         <p className="text-xs text-slate-500 mb-1">
-                            Saldo disponible: {wallet[fromCurrency]?.toFixed(2) || 0}
+                            Saldo disponible: {wallet[fromCurrency]?.toLocaleString() || 0}
                         </p>
 
                         <div className="flex gap-2">
@@ -121,6 +126,7 @@ function Intercambio() {
                                 onChange={(e) => setFromCurrency(e.target.value)}
                                 className="border p-2 rounded"
                             >
+                                <option value="COP">🇨🇴 COP</option>
                                 <option value="USD">USD</option>
                                 <option value="EUR">EUR</option>
                                 <option value="GBP">GBP</option>
@@ -140,7 +146,7 @@ function Intercambio() {
                     <div className="text-center mb-4">
                         <button
                             onClick={handleSwap}
-                            className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition-all"
+                            className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
                         >
                             Cambiar ⇅
                         </button>
@@ -155,9 +161,10 @@ function Intercambio() {
                                 onChange={(e) => setToCurrency(e.target.value)}
                                 className="border p-2 rounded"
                             >
-                                <option value="EUR">EUR</option>
                                 <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
                                 <option value="GBP">GBP</option>
+                                <option value="COP">🇨🇴 COP</option>
                             </select>
 
                             <input
@@ -173,14 +180,14 @@ function Intercambio() {
                     <button
                         onClick={handleExchange}
                         disabled={fromAmount <= 0}
-                        className="w-full bg-purple-600 text-white py-3 rounded-lg font-bold hover:bg-purple-700 active:scale-95 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full bg-purple-600 text-white py-3 rounded-lg font-bold hover:bg-purple-700 disabled:opacity-50"
                     >
                         Intercambiar
                     </button>
 
                     {/* MENSAJE */}
                     {mensaje && (
-                        <div className="mt-4 p-3 bg-green-100 text-green-700 rounded-lg text-center font-medium animate-pulse">
+                        <div className="mt-4 p-3 bg-green-100 text-green-700 rounded-lg text-center">
                             {mensaje}
                         </div>
                     )}

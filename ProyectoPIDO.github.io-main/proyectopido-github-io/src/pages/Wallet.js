@@ -15,7 +15,7 @@ function Wallet() {
         if (data) {
             setWallet(data);
         } else {
-            // Valores iniciales si no existe
+            // calores iniciales si no existe nada
             const initial = {
                 USD: 1000,
                 EUR: 1000,
@@ -42,19 +42,27 @@ function Wallet() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                    {/* USD */}
+                    {/* cop */}
+                    <div className="bg-white p-4 rounded-lg shadow border">
+                        <p className="text-sm text-slate-500">COP</p>
+                        <h2 className="text-2xl font-bold">
+                            ${wallet.COP?.toLocaleString() || 0}
+                        </h2>
+                    </div>
+                    
+                    {/* dolares */}
                     <div className="bg-white p-6 rounded-xl shadow border">
                         <p className="text-sm text-slate-500">USD</p>
                         <h2 className="text-2xl font-bold mt-2">${wallet.USD.toFixed(2)}</h2>
                     </div>
 
-                    {/* EUR */}
+                    {/* eurios */}
                     <div className="bg-white p-6 rounded-xl shadow border">
                         <p className="text-sm text-slate-500">EUR</p>
                         <h2 className="text-2xl font-bold mt-2">€{wallet.EUR.toFixed(2)}</h2>
                     </div>
 
-                    {/* GBP */}
+                    {/* libras esterlinas */}
                     <div className="bg-white p-6 rounded-xl shadow border">
                         <p className="text-sm text-slate-500">GBP</p>
                         <h2 className="text-2xl font-bold mt-2">£{wallet.GBP.toFixed(2)}</h2>

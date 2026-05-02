@@ -8,7 +8,6 @@ function HistorialTransacciones() {
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem("historial")) || [];
 
-        // Adaptar formato a tu diseño actual
         const formatted = data.map((t, index) => ({
             id: index,
             type: 'Intercambio',
@@ -28,15 +27,15 @@ function HistorialTransacciones() {
 
             <main className="flex-1 flex flex-col min-w-0">
 
-                {/* Header */}
+                {/* encabezado */}
                 <header className="h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-10 px-6 flex items-center justify-between">
                     <h2 className="text-2xl font-bold tracking-tight">Historial de Transacciones</h2>
                 </header>
 
-                {/* Content */}
+                {/* contenido */}
                 <div className="p-6 lg:p-8 space-y-6 flex-1 overflow-y-auto">
 
-                    {/* Si no hay datos */}
+                    {/* si no hay datos que salga */}
                     {transactions.length === 0 ? (
                         <div className="text-center text-slate-500">
                             No hay transacciones aún 🚫
